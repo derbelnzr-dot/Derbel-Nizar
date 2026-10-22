@@ -1,30 +1,21 @@
-@props([
-    'title',
-    'content',
-    'slug' => null,
-    'year' => null,
-])
+@props(['post'])
 
-<article class="rounded border border-gray-200 bg-white p-4">
-    <h2 class="text-xl font-medium text-red-600">
-        @if ($slug)
-            <a href="{{ route('posts.show', $slug) }}" class="hover:underline">{{ $title }}</a>
-        @else
-            {{ $title }}
+<article class="bg-white rounded-lg border border-gray-200 shadow-sm p-5 flex flex-col gap-3">
+    <div class="flex items-center gap-2">
+        <h2 class="text-lg font-semibold text-gray-900">
+            <a href="{{ route('posts.show', $post['slug']) }}" class="hover:text-indigo-600">{{ $post['title'] }}</a>
+        </h2>
+
+        @if ($post['featured'])
+            <span class="text-xs font-medium bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">À la une</span>
         @endif
-    </h2>
+    </div>
 
-    @if ($year)
-        <p class="mt-1 text-sm text-gray-500">Publié en {{ $year }}</p>
-    @endif
+    <p class="text-sm text-gray-600">{{ $post['excerpt'] }}</p>
+    <p class="text-xs text-gray-500">
+        {{ $post['author'] }} - {{ $post['date'] }} -
+        <a href="{{ route('posts.archive', $post['year']) }}" class="underline">Archive {{ $post['year'] }}</a>
+    </p>
 
-    @if ($content)
-        <p class="mt-2 leading-relaxed text-gray-700">{{ $content }}</p>
-    @endif
-
-    @if ($slug)
-        <p class="mt-4">
-            <a href="{{ route('posts.show', $slug) }}" class="text-red-600 underline">Lire la suite</a>
-        </p>
-    @endif
+    <a href="{{ route('posts.show', $post['slug']) }}" class="text-sm font-medium text-indigo-600 hover:underline">Lire l'article</a>
 </article>
