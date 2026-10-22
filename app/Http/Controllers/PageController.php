@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use Illuminate\View\View;
 
 class PageController extends Controller
 {
-    public function home()
+    public function home(): View
     {
         return view('home');
     }
 
-    public function about()
+    public function about(): View
     {
         return view('a-propos', [
             'auteur' => 'Prenom Nom',
@@ -19,7 +19,7 @@ class PageController extends Controller
         ]);
     }
 
-    public function time()
+    public function time(): View
     {
         return view('heure', [
             'heure' => now()->format('H:i'),

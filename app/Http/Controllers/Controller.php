@@ -2,29 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\View\View;
-
-class PageController extends Controller
+abstract class Controller
 {
-    public function home(): View
-    {
-        return view('home');
-    }
-
-    public function about(): View
-    {
-        return view('a-propos', [
-            'auteur' => 'Prenom Nom',
-            'groupe' => 'MDW32',
-        ]);
-    }
-
-    public function time(): View
-    {
-        return view('heure', [
-            'heure' => now()->format('H:i'),
-            'date' => now()->format('d/m/Y'),
-        ]);
-    }
 }
