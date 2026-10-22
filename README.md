@@ -2,12 +2,11 @@
 
 Mini-CMS est le projet fil rouge de l'Atelier Framework Côté Serveur (Laravel 13).
 
-## État actuel (tag lab-02)
+## État actuel (tag lab-02b)
 
-- Routes nommées, toutes servies par des contrôleurs : `PageController` (pages) et `PostController` (articles).
-- Articles stockés dans un tableau PHP, sans base de données pour l'instant.
-- Layout Blade `<x-layout>` avec Tailwind chargé par Vite.
-- Base de données SQLite locale (`database/database.sqlite`, non versionnée).
+- Pages construites avec des composants Blade anonymes : `x-navbar`, `x-nav-link`, `x-post-card`, `x-alert`, `x-page-header`.
+- Lien actif dans la navigation avec `request()->routeIs()`.
+- Articles toujours stockés dans un tableau PHP, sans base de données pour l'instant.
 
 ## Routes disponibles
 
@@ -33,3 +32,7 @@ Mini-CMS est le projet fil rouge de l'Atelier Framework Côté Serveur (Laravel 
 ### Détail d'un article
 
 ![Détail d'un article](screenshots/s03-article.png)
+
+### Session 04
+
+![Liste des articles](screenshots/s04-articles.png)
