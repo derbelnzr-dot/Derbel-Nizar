@@ -4,7 +4,8 @@
 ])
 
 @php
-    $active = request()->routeIs($route) || request()->routeIs($route.'.*');
+    $prefix = explode('.', $route)[0].'.*';
+    $active = request()->routeIs($route) || request()->routeIs($prefix);
 @endphp
 
 <a
