@@ -8,6 +8,6 @@
             <x-post-card :title="$post['title']" :content="$post['excerpt']" :slug="$slug" :year="$post['year']" />
         </div>
     @empty
-        <x-alert type="info" message="Aucun article pour cette sélection." />
+        <x-alert type="info" title="Aucun article">Aucun article pour cette sélection.</x-alert>
     @endforelse
 </x-layout>
