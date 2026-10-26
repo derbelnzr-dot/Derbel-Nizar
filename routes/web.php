@@ -12,4 +12,14 @@ Route::get('/posts/archive/{year}', [PostController::class, 'archive'])
     ->whereNumber('year')
     ->name('posts.archive');
 
-Route::resource('posts', PostController::class)->only(['index', 'show', 'create', 'store']);
+Route::resource('posts', PostController::class)->except(['edit', 'update', 'destroy'])->names([
+    'index' => 'posts.index',
+    'show' => 'posts.show',
+    'create' => 'posts.create',
+    'store' => 'posts.store',
+]);
+
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+Route::patch('/posts/{post}', [PostController::class, 'update'])->name('posts.update.patch');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');

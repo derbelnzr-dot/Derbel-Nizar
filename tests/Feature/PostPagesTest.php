@@ -72,3 +72,57 @@ it('shows only published latest posts on home', function () {
         ->assertSee('Publié récemment')
         ->assertDontSee('Brouillon');
 });
+
+it('can create a post', function () {
+    $this->post(route('posts.store'), [
+        'title' => 'Nouveau',
+        'slug' => 'nouveau',
+        'body' => 'Contenu',
+        'excerpt' => 'Extrait',
+        'is_published' => '1',
+    ])->assertRedirect();
+
+    $this->assertDatabaseHas('posts', [
+        'title' => 'Nouveau',
+        'slug' => 'nouveau',
+    ]);
+});
+
+it('can update a post', function () {
+    $post = Post::create([
+        'title' => 'Ancien',
+        'slug' => 'ancien',
+        'body' => 'Corps',
+        'is_published' => true,
+        'published_at' => now(),
+    ]);
+
+    $this->put(route('posts.update', $post), [
+        'title' => 'Modifié',
+        'slug' => 'modifie',
+        'body' => 'Corps modifié',
+        'excerpt' => null,
+    ])->assertRedirect();
+
+    $this->assertDatabaseHas('posts', [
+        'id' => $post->id,
+        'title' => 'Modifié',
+        'slug' => 'modifie',
+    ]);
+});
+
+it('can delete a post', function () {
+    $post = Post::create([
+        'title' => 'À supprimer',
+        'slug' => 'a-supprimer',
+        'body' => 'Corps',
+        'is_published' => true,
+        'published_at' => now(),
+    ]);
+
+    $this->delete(route('posts.destroy', $post))->assertRedirect();
+
+    $this->assertDatabaseMissing('posts', [
+        'id' => $post->id,
+    ]);
+});

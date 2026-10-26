@@ -14,6 +14,19 @@
             @endif
         </p>
 
+        @if ($post->excerpt)
+            <p class="text-lg text-gray-600 mb-6">{{ $post->excerpt }}</p>
+        @endif
+
         <div class="text-gray-800 leading-relaxed whitespace-pre-line">{{ $post->body }}</div>
+
+        <div class="mt-8 flex items-center gap-4">
+            <a href="{{ route('posts.edit', $post) }}" class="text-sm text-indigo-600 hover:underline">Modifier</a>
+            <form method="POST" action="{{ route('posts.destroy', $post) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-sm text-red-600 hover:underline">Supprimer</button>
+            </form>
+        </div>
     </article>
 </x-layout>
