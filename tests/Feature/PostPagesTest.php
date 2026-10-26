@@ -77,7 +77,7 @@ it('can create a post', function () {
     $this->post(route('posts.store'), [
         'title' => 'Nouveau',
         'slug' => 'nouveau',
-        'body' => 'Contenu',
+        'body' => 'Contenu suffisamment long pour passer la validation',
         'excerpt' => 'Extrait',
         'is_published' => '1',
     ])->assertRedirect();
@@ -92,7 +92,7 @@ it('can update a post', function () {
     $post = Post::create([
         'title' => 'Ancien',
         'slug' => 'ancien',
-        'body' => 'Corps',
+        'body' => 'Corps suffisamment long pour passer la validation',
         'is_published' => true,
         'published_at' => now(),
     ]);
@@ -100,8 +100,9 @@ it('can update a post', function () {
     $this->put(route('posts.update', $post), [
         'title' => 'Modifié',
         'slug' => 'modifie',
-        'body' => 'Corps modifié',
+        'body' => 'Corps modifié suffisamment long pour passer la validation',
         'excerpt' => null,
+        'is_published' => '0',
     ])->assertRedirect();
 
     $this->assertDatabaseHas('posts', [

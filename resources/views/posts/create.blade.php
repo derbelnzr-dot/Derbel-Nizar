@@ -9,5 +9,5 @@
         </x-alert>
     @endif
 
-    <x-post-form :action="route('posts.store')" method="POST" />
+    <x-post-form />
 </x-layout>
