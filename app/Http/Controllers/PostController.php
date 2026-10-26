@@ -25,9 +25,9 @@ class PostController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
-        //
+        return view('posts.create');
     }
 
     public function store(Request $request)

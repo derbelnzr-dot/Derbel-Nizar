@@ -11,7 +11,16 @@
         </a>
     </section>
 
-    <x-alert type="success" title="Sprint en cours">
-        Les composants Blade évitent de recopier le même code HTML dans chaque page.
-    </x-alert>
+    <section class="mb-10">
+        <h2 class="mb-4 text-2xl font-semibold text-gray-900">Derniers articles publiés</h2>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            @forelse ($latestPosts as $post)
+                <x-post-card :post="$post" />
+            @empty
+                <x-alert type="warning" title="Aucun article" class="md:col-span-2 lg:col-span-3">
+                    Il n'y a pas encore d'article publié.
+                </x-alert>
+            @endforelse
+        </div>
+    </section>
 </x-layout>
